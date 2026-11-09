@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="北京春节攻略">
+<meta name="theme-color" content="#faf7f2">
+<title>北京春节 6 日攻略 · 2027.2.5–2.10</title>
+<style>
+  :root{
+    --bg:#faf7f2; --card:#ffffff; --ink:#1d1b19; --muted:#6b6560;
+    --line:#e9e2d9; --accent:#b3261e; --accent-soft:#fbeceb;
+    --gold:#8a5f16; --ok:#2e7d4f;
+    --radius:16px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#141312; --card:#1d1b1a; --ink:#f3efeb; --muted:#a8a19a;
+      --line:#2f2b28; --accent:#ff7266; --accent-soft:#2b1a18;
+      --gold:#e0b45c; --ok:#5fce93;
+    }
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.68 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB",
+         "Noto Sans CJK SC","Microsoft YaHei",sans-serif;
+    padding-bottom:calc(32px + env(safe-area-inset-bottom));
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:0 16px}
+
+  /* ── 锁屏 ── */
+  body.locked{overflow:hidden}
+  .lock{position:fixed;inset:0;z-index:9999;background:var(--bg);display:grid;place-items:center;padding:24px}
+  .lock.hide{display:none}
+  .lockbox{width:100%;max-width:320px;text-align:center}
+  .lockicon{font-size:40px;line-height:1;margin-bottom:14px}
+  .lockbox h3{margin:0 0 6px;font-size:19px;letter-spacing:-.01em}
+  .lockbox p{margin:0 0 20px;color:var(--muted);font-size:13.5px}
+  .lockbox input{
+    width:100%;padding:14px;border-radius:12px;border:1.5px solid var(--line);
+    background:var(--card);color:var(--ink);font-size:16px;text-align:center;
+    letter-spacing:.08em;outline:none;appearance:none;
+  }
+  .lockbox input:focus{border-color:var(--accent)}
+  .lockbox button{
+    width:100%;margin-top:12px;padding:14px;border:0;border-radius:12px;
+    background:var(--accent);color:#fff;font-size:16px;font-weight:700;
+  }
+  .lockbox button:active{opacity:.85}
+  .lockerr{min-height:20px;margin-top:10px;font-size:13px;color:var(--accent)}
+  .lockshake{animation:shake .3s}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+  .relock{
+    margin-top:12px;padding:7px 14px;border-radius:999px;cursor:pointer;
+    border:1px solid var(--line);background:transparent;color:var(--muted);
+    font-size:12.5px;font-family:inherit;
+  }
+
+  /* ── 头部 ── */
+  header.hero{padding:calc(26px + env(safe-area-inset-top)) 0 18px;text-align:left}
+  .kicker{font-size:12px;letter-spacing:.14em;color:var(--accent);font-weight:700;margin:0 0 8px}
+  h1{font-size:27px;line-height:1.28;margin:0 0 10px;letter-spacing:-.02em}
+  .sub{color:var(--muted);font-size:14px;margin:0 0 14px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{
+    font-size:12.5px;padding:5px 11px;border-radius:999px;
+    background:var(--accent-soft);color:var(--accent);font-weight:600;
+  }
+
+  /* ── 顶部导航 ── */
+  nav.daybar{
+    position:sticky; top:0; z-index:20; margin:6px 0 4px;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    -webkit-backdrop-filter:saturate(180%) blur(14px);
+    backdrop-filter:saturate(180%) blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .daybar .scroll{
+    display:flex; gap:8px; overflow-x:auto; padding:10px 16px;
+    scrollbar-width:none;
+  }
+  .daybar .scroll::-webkit-scrollbar{display:none}
+  .daybar a{
+    flex:0 0 auto; text-decoration:none; font-size:13px; font-weight:600;
+    padding:7px 13px; border-radius:999px; color:var(--muted);
+    background:var(--card); border:1px solid var(--line);
+  }
+  .daybar a.hot{color:var(--accent);border-color:var(--accent)}
+
+  /* ── 卡片与标题 ── */
+  section{margin:26px 0}
+  h2{
+    font-size:13px;letter-spacing:.1em;color:var(--muted);
+    text-transform:uppercase;margin:0 0 12px;font-weight:700;
+  }
+  .card{
+    background:var(--card); border:1px solid var(--line);
+    border-radius:var(--radius); padding:16px; margin-bottom:14px;
+  }
+  .day{margin-bottom:18px;padding:0;overflow:hidden}
+  .day-head{
+    display:flex;align-items:flex-start;gap:12px;
+    padding:14px 16px; border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg,var(--accent-soft),transparent);
+  }
+  .dnum{
+    flex:0 0 auto;width:38px;height:38px;border-radius:12px;
+    background:var(--accent);color:#fff;display:grid;place-items:center;
+    font-weight:800;font-size:15px;
+  }
+  .dmeta{flex:1;min-width:0}
+  .dtitle{font-weight:700;font-size:16.5px;line-height:1.35}
+  .dwhen{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .tag{
+    display:inline-block;font-size:11px;font-weight:700;padding:2px 7px;
+    border-radius:6px;background:var(--accent-soft);color:var(--accent);
+    margin-left:6px;vertical-align:1px;
+  }
+
+  /* ── 时间线 ── */
+  .rows{padding:8px 16px 14px}
+  .row{
+    display:flex;gap:12px;padding:10px 8px;border-bottom:1px dashed var(--line);
+    border-radius:10px;transition:background .15s,opacity .15s;
+    -webkit-user-select:none;user-select:none;
+  }
+  .row:last-child{border-bottom:0}
+  .row.tap{cursor:pointer}
+  .row.tap:active{background:var(--accent-soft)}
+  .row.done{background:color-mix(in srgb, var(--ok) 11%, transparent)}
+  .row.done .x,.row.done .x small{color:var(--muted);text-decoration:line-through;text-decoration-thickness:1px}
+  .row.done .t{color:var(--ok);text-decoration:line-through}
+  .row.skip{opacity:.42}
+  .row.skip .x,.row.skip .x small{text-decoration:line-through}
+  .st{
+    flex:0 0 20px;height:20px;margin-top:2px;border-radius:50%;
+    border:1.5px solid var(--line);display:grid;place-items:center;
+    font-size:12px;font-weight:800;color:transparent;line-height:1;
+  }
+  .row.done .st{background:var(--ok);border-color:var(--ok);color:#fff}
+  .row.skip .st{border-color:var(--muted);color:var(--muted)}
+  .dcnt{margin-left:8px;font-size:11.5px;color:var(--muted);font-weight:600;white-space:nowrap}
+  .hint{font-size:12.5px;color:var(--muted);margin:-4px 0 12px;line-height:1.6}
+  .hint b{color:var(--accent)}
+
+  .t{
+    flex:0 0 62px;font-variant-numeric:tabular-nums;
+    font-size:13px;font-weight:700;color:var(--accent);padding-top:1px;
+  }
+  .x{flex:1;min-width:0;font-size:15px}
+  .x small{color:var(--muted);font-size:13px}
+  .map{
+    display:inline-block;margin-left:6px;padding:5px 11px;border-radius:999px;
+    background:var(--accent-soft);color:var(--accent);font-size:12px;font-weight:700;
+    text-decoration:none;white-space:nowrap;vertical-align:1px;
+  }
+  .map:active{opacity:.5}
+  .q{
+    display:inline-block;margin-left:6px;padding:1px 7px;border-radius:6px;
+    background:var(--accent-soft);color:var(--accent);font-size:11px;
+    font-weight:700;white-space:nowrap;vertical-align:2px;
+    border:1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  }
+  .q.long{background:var(--accent);color:var(--card);border-color:var(--accent)}
+  .bigmap{display:flex;flex-wrap:wrap;gap:10px;padding:4px 0 0}
+  .bigmap a{
+    flex:1 1 40%;text-align:center;text-decoration:none;
+    padding:12px 10px;border-radius:12px;background:var(--accent-soft);
+    color:var(--accent);font-size:14px;font-weight:700;
+  }
+  .bigmap a:active{opacity:.5}
+
+  .note{
+    margin:10px 16px 16px;padding:10px 12px;border-radius:10px;
+    background:var(--accent-soft);color:var(--accent);font-size:13.5px;line-height:1.6;
+  }
+  .note b{font-weight:700}
+
+  /* ── 清单 ── */
+  .check{display:flex;align-items:flex-start;gap:11px;padding:10px 0;border-bottom:1px solid var(--line)}
+  .check:last-child{border-bottom:0}
+  .check input{
+    appearance:none;-webkit-appearance:none;flex:0 0 auto;
+    width:22px;height:22px;margin:1px 0 0;border-radius:7px;
+    border:1.5px solid var(--line);background:transparent;position:relative;
+    transition:.15s;
+  }
+  .check input:checked{background:var(--ok);border-color:var(--ok)}
+  .check input:checked::after{
+    content:"";position:absolute;left:7px;top:3px;width:5px;height:10px;
+    border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg);
+  }
+  .check span{font-size:15px;flex:1}
+  .check input:checked + span{color:var(--muted);text-decoration:line-through}
+  .progress{display:flex;justify-content:space-between;align-items:center;
+    font-size:12.5px;color:var(--muted);margin-bottom:6px}
+
+  /* ── 表格式条目 ── */
+  .kv{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+  .kv:last-child{border-bottom:0}
+  .kv b{flex:0 0 96px;font-weight:700}
+  .kv span{flex:1;color:var(--muted)}
+  .kv span em{color:var(--accent);font-style:normal;font-weight:600}
+
+  ul.tips{margin:0;padding-left:20px}
+  ul.tips li{margin:8px 0;font-size:14.6px}
+  ul.tips li b{font-weight:700}
+
+  .price{display:flex;justify-content:space-between;font-size:14.6px;padding:8px 0;border-bottom:1px solid var(--line)}
+  .price:last-child{border-bottom:0}
+  .price b{font-variant-numeric:tabular-nums}
+  .total{border:0;margin-top:8px;padding-top:12px;border-top:2px solid var(--line);font-weight:700}
+  .total b{color:var(--accent);font-size:17px}
+
+  footer{color:var(--muted);font-size:12.5px;text-align:center;padding:24px 16px 8px;line-height:1.7}
+
+  @media print{
+    nav.daybar{display:none}
+    body{background:#fff;color:#000}
+    .card{break-inside:avoid;border-color:#ddd}
+    .day{break-inside:avoid}
+  }
+</style>
+</head>
+<body class="locked">
+
+<div class="lock" id="lock">
+  <div class="lockbox">
+    <div class="lockicon">🔒</div>
+    <h3>北京春节攻略</h3>
+    <p>输入密码查看行程</p>
+    <input id="pw" type="password" autocomplete="current-password" placeholder="请输入密码" enterkeyhint="go" autofocus>
+    <button id="go">进入</button>
+    <div class="lockerr" id="err"></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="hero">
+    <p class="kicker">2027 春节 · 北京</p>
+    <h1>北京春节 6 日攻略</h1>
+    <p class="sub">2 月 5 日 – 2 月 10 日 · 4 位成人 · 除夕当天抵达</p>
+    <div class="chips">
+      <span class="chip">6 天 5 晚</span>
+      <span class="chip">-7℃ ~ 5℃</span>
+      <span class="chip">人均约 ¥3400</span>
+    </div>
+  </header>
+</div>
+
+<nav class="daybar">
+  <div class="scroll">
+    <a href="#prep">行前</a>
+    <a href="#d1" class="hot">D1 除夕</a>
+    <a href="#d2">D2 初一</a>
+    <a href="#d3">D3 故宫</a>
+    <a href="#d4">D4 长城</a>
+    <a href="#d5">D5 国博</a>
+    <a href="#d6">D6 返程</a>
+    <a href="#book">预约</a>
+    <a href="#queue">排队</a>
+    <a href="#food">吃饭</a>
+    <a href="#money">预算</a>
+    <a href="#nav">导航</a>
+    <a href="#tips">注意</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- 行前 -->
+  <section id="prep">
+    <h2>出发前必办</h2>
+    <div class="card">
+      <div class="progress"><span>准备事项</span><span id="pcount">0 / 6</span></div>
+      <label class="check"><input type="checkbox" data-key="p1"><span>订酒店：前门 / 崇文门 / 东单，地铁 2 号线沿线，5 晚不换店（2 间房或家庭房）</span></label>
+      <label class="check"><input type="checkbox" data-key="p2"><span>订年夜饭：2/5 除夕，提前 1 个月最稳</span></label>
+      <label class="check"><input type="checkbox" data-key="p3"><span>订往返票：2/5 到、2/10 走（除夕当天航班贵，早订）</span></label>
+      <label class="check"><input type="checkbox" data-key="p4"><span>按「预约放票」页确认各景区放票日</span></label>
+      <label class="check"><input type="checkbox" data-key="p5"><span>每人身份证准备（全程高频使用）</span></label>
+      <label class="check"><input type="checkbox" data-key="p6"><span>保暖装备：羽绒服、帽子、手套、围巾、润唇膏</span></label>
+    </div>
+  </section>
+
+  <!-- D1 -->
+  <section id="d1">
+    <h2>每日行程</h2>
+    <p class="hint">轻点任意行程 → 标记<b>已完成</b>（划线变绿）；再轻点 → 标记<b>不去了</b>（变灰）；再轻点恢复原样。<br>红色 <b>⏳</b> 标签 = 该点预计排队/安检时间。</p>
+
+    <div class="card day">
+      <div class="day-head">
+        <div class="dnum">D1</div>
+        <div class="dmeta">
+          <div class="dtitle">抵达 + 前门 + 年夜饭</div>
+          <div class="dwhen">2/5 周五 · <b>除夕</b></div>
+        </div>
+      </div>
+      <div class="rows">
+        <div class="row"><div class="t">抵达</div><div class="x">机场 / 车站 → 酒店入住<small>建议订前门、崇文门一带，放下行李就能出门</small></div></div>
+        <div class="row"><div class="t">15:30</div><div class="x">前门大街 → 大栅栏 → 北京坊<small>PageOne 书店二楼看正阳门</small><a class="map" href="https://uri.amap.com/search?keyword=前门大街&city=北京&callnative=1">地图</a></div></div>
+        <div class="row"><div class="t">16:30</div><div class="x">天安门广场看降旗<span class="tag">强烈建议</span><span class="q">⏳ 0–10 分</span><small>降旗约 17:35；<b>除夕是广场全年人最少的时段之一</b>，安检几乎不排队</small><a class="map" href="https://uri.amap.com/search?keyword=天安门广场&city=北京&callnative=1">地图</a></div></div>
+        <div class="row"><div class="t">18:30</div><div class="x"><b>年夜饭</b><small>四季民福 / 花家怡园 / 大董 / 全聚德，4 人套餐</small></div></div>
+        <div class="row"><div class="t">21:00</div><div class="x">回酒店，早点休息<small>第二天初一是全程最满的一天</small></div></div>
+      </div>
+      <div class="note"><b>除夕是最舒服的一天：</b>下午商铺会提前打烊，但天安门广场反而是一年里人最少的时段，安检基本不排队。如果航班中午前到，<b>把广场和降旗放在除夕下午</b>，初一就不用再为广场排一次长队。年夜饭务必提前订位，很多店只做套餐。</div>
+    </div>
+
+    <!-- D2 -->
+    <div class="card day" id="d2">
+      <div class="day-head">
+        <div class="dnum">D2</div>
+        <div class="dmeta">
+          <div class="dtitle">纪念堂 + 广场 + 庙会</div>
+          <div class="dwhen">2/6 周六 · 初一</div>
+        </div>
+      </div>
+      <div class="rows">
+        <div class="row"><div class="t">06:30</div><div class="x">起床出发<small>天没亮、-7℃，最厚的都穿上，暖宝宝贴好</small></div></div>
+        <div class="row"><div class="t">06:50</div><div class="x">天安门广场安检口排队<span class="q long">⏳ 40–70 分</span><small>初一预计排 40–70 分钟；只背小包，别带液体</small><a class="map" href="https://uri.amap.com/search?keyword=天安门广场&city=北京&callnative=1">地图</a></div></div>
+        <div class="row"><div class="t">08:00</div><div class="x">毛主席纪念堂排队<span class="tag">需预约</span><span class="q long">⏳ 1.5–2.5 小时</span><small>初一实测要排 1.5–2.5 小时；8:00 开门，11:00 停止入场</small><a class="map" href="https://uri.amap.com/search?keyword=毛主席纪念堂&city=北京&callnative=1">地图</a></div></div>
+        <div class="row"><div class="t">10:30</div><div class="x">参观纪念堂<small>约 20 分钟；不能带包、水、相机</small></div></div>
+        <div class="row"><div class="t">11:00</div><div class="x">广场拍照<small>人民英雄纪念碑、国旗杆，20 分钟够</small></div></div>
+        <div class="row"><div class="t">11:40</div><div class="x">午餐：前门大街<small>避开王府井，人更多</small></div></div>
+        <div class="row"><div class="t">13:30</div><div class="x">地坛庙会<span class="q">⏳ 10–20 分</span><small>门票 10 元；下午是人流最高峰，逛 2 小时就撤</small><a class="map" href="https://uri.amap.com/search?keyword=地坛公园&city=北京&callnative=1">地图</a></div></div>
+        <div class="row"><div class="t">16:30</div><div class="x">回酒店取暖歇脚<small>外面太冷，别硬撑到晚上</small></div></div>
+        <div class="row"><div class="t">18:30</div><div class="x">晚餐：簋街（胡大 / 花家怡园）<a class="map" href="https://uri.amap.com/search?keyword=簋街&city=北京&callnative=1">地图</a></div></div>
+      </div>
+      <div class="note"><b>初一这一天做好两个预案：</b>① 6:30 起不来，就把纪念堂挪到 2/9 早上，初一改成 9 点出门直接逛庙会；② 纪念堂排超过 2 小时就放弃，别为了一个 20 分钟的瞻仰耗掉整个上午。城楼已经挪到 D3，跟故宫一起走。</div>
+    </div>
+
+    <!-- D3 -->
+    <div class="card day" id="d3">
+      <div class="day-head">
+        <div class="dnum">D3</div>
+        <div class="dmeta">
+          <div class="dtitle">天安门城楼 + 故宫</div>
+          <div class="dwhen">2/7 周日 · 初二</div>
+        </div>
+      </div>
+      <div class="rows">
+        <div class="row"><div class="t">07:30</div><div class="x">出发去天安门<small>初二比初一稍好，但安检仍要排</small></div></div>
+        <div class="row"><div class="t">07:50</div><div class="x">安检口排队<span class="q">⏳ 30–50 分</span><small>预计 30–50 分钟；这天只带小包</small><a class="map" href="https://uri.amap.com/search?keyword=天安门&city=北京&callnative=1">地图</a></div></div>
+        <div class="row"><div class="t">08:30</div><div class="x">登天安门城楼<span class="tag">需预约</span><span class="q">⏳ 30–50 分</span><small>8:30 开门，现场排队 30–50 分钟；单向参观，北侧下</small><a class="map" href="https://uri.amap.com/search?keyword=天安门城楼&city=北京&callnative=1">地图</a></div></div>
+        <div class="row"><div class="t">09:50</div><div class="x">城楼北侧出来 → 端门 → 午门<small>步行 5 分钟，不用再出安检区</small></div></div>
+        <div class="row"><div class="t">10:00</div><div class="x">故宫<span class="tag">需预约</span><span class="q">⏳ 20–40 分</span><small>午门安检另排 20–40 分钟；淡季 15:30 停止入场</small><a class="map" href="https://uri.amap.com/search?keyword=故宫午门&city=北京&callnative=1">地图</a></div></div>
+        <div class="row"><div class="t">路线</div><div class="x">午门 → 太和门 → 三大殿 → 乾清宫 → 交泰殿 → 坤宁宫 → 御花园 → 神武门</div></div>
+        <div class="row"><div class="t">加购</div><div class="x">珍宝馆、钟表馆（各 10 元）；午餐冰窖餐厅或自带</div></div>
+        <div class="row"><div class="t">16:00</div><div class="x">出神武门 → 景山公园万春亭<small>门票 2 元，俯瞰故宫全景，日落约 17:35</small><a class="map" href="https://uri.amap.com/search?keyword=景山公园&city=北京&callnative=1">地图</a></div></div>
+        <div class="row"><div class="t">17:30</div><div class="x">什刹海 → 烟袋斜街 → 鼓楼<small>天黑了，逛胡同 40 分钟即可</small><a class="map" href="https://uri.amap.com/search?keyword=什刹海&city=北京&callnative=1">地图</a></div></div>
+        <div class="row"><div class="t">18:30</div><div class="x">晚餐：烤肉季 / 姚记炒肝</div></div>
+      </div>
+      <div class="note"><b>为什么把城楼和故宫放一天：</b>两者在同一条通道上（城楼 → 端门 → 午门），过一次安检就能走完，比分开两天各排一次队省 1 小时以上。</div>
+    </div>
+
+    <!-- D4 -->
+    <div class="card day" id="d4">
+      <div class="day-head">
+        <div class="dnum">D4</div>
+        <div class="dmeta">
+          <div class="dtitle">慕田峪长城 + 奥林匹克夜景</div>
+          <div class="dwhen">2/8 周一 · 初三 · 故宫国博闭馆，正好出城</div>
+        </div>
+      </div>
+      <div class="rows">
+        <div class="row"><div class="t">07:00</div><div class="x">包车出发慕田峪<small>4 人往返约 800–1000 元，车程 1.5 小时</small></div></div>
+        <div class="row"><div class="t">08:15</div><div class="x">到慕田峪，先排缆车<span class="q long">⏳ 40–90 分</span><small>春节缆车排队 40–90 分钟，越早越好；门票 45、缆车往返 120</small><a class="map" href="https://uri.amap.com/search?keyword=慕田峪长城&city=北京&callnative=1">地图</a></div></div>
+        <div class="row"><div class="t">09:00</div><div class="x">长城：缆车上 14 号敌楼 → 走到 20 号 → 滑道下<small>山上比市区低 3–5℃、风更大，戴好帽子手套</small></div></div>
+        <div class="row"><div class="t">13:00</div><div class="x">午餐：虹鳟鱼农家院</div></div>
+        <div class="row"><div class="t">15:00</div><div class="x">返程，可选顺路雁栖湖 / 红螺寺</div></div>
+        <div class="row"><div class="t">17:30</div><div class="x">奥林匹克公园：鸟巢、水立方夜景<small>亮灯约 18:00</small><a class="map" href="https://uri.amap.com/search?keyword=鸟巢国家体育场&city=北京&callnative=1">地图</a></div></div>
+        <div class="row"><div class="t">19:00</div><div class="x">晚餐：亚运村</div></div>
+      </div>
+      <div class="note"><b>备选八达岭：</b>清河站高铁 25 分钟直达，门票 35，但初三人极多。慕田峪人少、缆车舒服，4 人包车更划算。</div>
+    </div>
+
+    <!-- D5 -->
+    <div class="card day" id="d5">
+      <div class="day-head">
+        <div class="dnum">D5</div>
+        <div class="dmeta">
+          <div class="dtitle">国家博物馆 + 天坛</div>
+          <div class="dwhen">2/9 周二 · 初四</div>
+        </div>
+      </div>
+      <div class="rows">
+        <div class="row"><div class="t">08:00</div><div class="x">补看毛主席纪念堂<small>仅当 D2 没排上时才需要，提前约好</small><a class="map" href="https://uri.amap.com/search?keyword=毛主席纪念堂&city=北京&callnative=1">地图</a></div></div>
+        <div class="row"><div class="t">08:20</div><div class="x">国博北门排队<span class="q">⏳ 40–60 分</span><small>安检 40–60 分钟，9:00 开馆；需预约，带身份证</small><a class="map" href="https://uri.amap.com/search?keyword=中国国家博物馆&city=北京&callnative=1">地图</a></div></div>
+        <div class="row"><div class="t">09:00</div><div class="x">国博：重点 B1「古代中国」<span class="tag">需预约</span><small>后母戊鼎、四羊方尊</small></div></div>
+        <div class="row"><div class="t">12:45</div><div class="x">午餐：前门大街</div></div>
+        <div class="row"><div class="t">14:00</div><div class="x">天坛<span class="q">⏳ 20–30 分</span><small>东门进：祈年殿 → 回音壁 → 圜丘，联票 28–34 元</small><a class="map" href="https://uri.amap.com/search?keyword=天坛公园东门&city=北京&callnative=1">地图</a></div></div>
+        <div class="row"><div class="t">16:30</div><div class="x">前门 / 大栅栏买伴手礼<a class="map" href="https://uri.amap.com/search?keyword=前门大街&city=北京&callnative=1">地图</a></div></div>
+        <div class="row"><div class="t">18:30</div><div class="x">晚餐：四季民福前门店 或 南门涮肉</div></div>
+      </div>
+    </div>
+
+    <!-- D6 -->
+    <div class="card day" id="d6">
+      <div class="day-head">
+        <div class="dnum">D6</div>
+        <div class="dmeta">
+          <div class="dtitle">清华 + 颐和园 → 返程</div>
+          <div class="dwhen">2/10 周三 · 初五</div>
+        </div>
+      </div>
+      <div class="rows">
+        <div class="row"><div class="t">08:30</div><div class="x">清华大学<span class="tag">需预约</span><small>提前 7 天约「参观清华」；二校门 → 大礼堂 → 清华学堂 → 荷塘月色</small><a class="map" href="https://uri.amap.com/search?keyword=清华大学二校门&city=北京&callnative=1">地图</a></div></div>
+        <div class="row"><div class="t">11:30</div><div class="x">午餐：五道口</div></div>
+        <div class="row"><div class="t">13:00</div><div class="x">颐和园<span class="q">⏳ 10–20 分</span><small>东宫门：仁寿殿 → 长廊 → 排云殿 → 佛香阁 → 十七孔桥；淡季门票 20，联票 50</small><a class="map" href="https://uri.amap.com/search?keyword=颐和园东宫门&city=北京&callnative=1">地图</a></div></div>
+        <div class="row"><div class="t">16:00</div><div class="x">去机场 / 车站<small>4 号线 → 大兴机场线，或 10 号线 → 首都机场；预留 2 小时</small></div></div>
+      </div>
+      <div class="note"><b>航班早于 16:00：</b>把清华挪到 2/9 下午，天坛挪到 2/9 上午。</div>
+    </div>
+  </section>
+
+  <!-- 预约 -->
+  <section id="book">
+    <h2>预约放票时间</h2>
+    <div class="card">
+      <div class="kv"><b>故宫</b><span>提前 7 天 <em>20:00</em> 放票 → 1/31 20:00 抢 2/7</span></div>
+      <div class="kv"><b>国家博物馆</b><span>提前 7 天 <em>17:00</em> → 2/2 17:00 抢 2/9</span></div>
+      <div class="kv"><b>天安门广场</b><span>提前 1–7 天 → 1/29 可约 2/5，1/30 可约 2/6</span></div>
+      <div class="kv"><b>毛主席纪念堂</b><span>提前 1–6 天 → 1/31 可约 2/6（初一）</span></div>
+      <div class="kv"><b>天安门城楼</b><span>提前 1–7 天 → 1/31 可约 2/7（初二）</span></div>
+      <div class="kv"><b>清华大学</b><span>提前 7 天 → 2/3 约 2/10，名额极少</span></div>
+      <div class="kv"><b>长城</b><span>八达岭 / 慕田峪 提前 7 天 → 2/1 约 2/8</span></div>
+      <div class="kv"><b>雍和宫</b><span>公众号预约</span></div>
+      <div class="kv"><b>年夜饭</b><span><em>现在就订</em></span></div>
+      <div class="note" style="margin:14px 0 0"><b>强实名提醒：</b>故宫、国博、纪念堂、城楼、清华都需本人身份证刷证入场。代订务必用 4 人真实身份信息，别买「转让票」。</div>
+    </div>
+  </section>
+
+  <!-- 排队 -->
+  <section id="queue">
+    <h2>排队时间预算</h2>
+    <div class="card">
+      <div class="kv"><b>广场安检</b><span>初一 <em>40–70 分钟</em>；初二 30–50 分钟；<em>除夕下午几乎不排队</em></span></div>
+      <div class="kv"><b>毛主席纪念堂</b><span>初一 <em>90–150 分钟</em>，初二 60–90 分钟；11:00 停止入场</span></div>
+      <div class="kv"><b>天安门城楼</b><span>30–50 分钟（8:30 开门，赶第一波）</span></div>
+      <div class="kv"><b>故宫午门</b><span>20–40 分钟；8:30 前到可压到 10–20 分钟</span></div>
+      <div class="kv"><b>国家博物馆</b><span>安检 40–60 分钟，建议 8:20 到</span></div>
+      <div class="kv"><b>慕田峪缆车</b><span>40–90 分钟，8:15 前到山下</span></div>
+      <div class="kv"><b>天坛 / 庙会</b><span>购票入园 20–30 分钟</span></div>
+      <div class="kv"><b>返程交通</b><span>初三下午京藏 / 京承高速 <em>堵 1 小时</em>，15:00 前必须上高速</span></div>
+      <div class="note" style="margin:14px 0 0">
+        <b>排队策略：</b>① 所有能选时段的，约<b>当天最早一档</b>；② 只背小包，液体、打火机、大充电宝别带，安检快一倍；③ 进了安检区就别再出来，出来要重排；④ 排队时贴暖宝宝、戴手套，-7℃ 站一小时很要命；⑤ 每天只安排 2 个需要排队的点，第三个一定是「可放弃」的。
+      </div>
+    </div>
+  </section>
+
+  <!-- 吃饭 -->
+  <section id="food">
+    <h2>餐厅清单</h2>
+    <div class="card">
+      <div class="kv"><b>烤鸭</b><span>四季民福（前门/故宫店排队长，选其他分店）、便宜坊</span></div>
+      <div class="kv"><b>涮肉</b><span>南门涮肉、聚宝源（牛街）、东来顺</span></div>
+      <div class="kv"><b>北京菜</b><span>局气、花家怡园、同和居</span></div>
+      <div class="kv"><b>小吃</b><span>护国寺小吃、姚记炒肝、牛街</span></div>
+    </div>
+  </section>
+
+  <!-- 预算 -->
+  <section id="money">
+    <h2>费用预估 · 4 人</h2>
+    <div class="card">
+      <div class="price"><span>住宿 5 晚 × 2 间 × 800</span><b>≈ 8000</b></div>
+      <div class="price"><span>餐饮 500/天 × 6 天</span><b>≈ 3000</b></div>
+      <div class="price"><span>门票（4 人）</span><b>≈ 1400</b></div>
+      <div class="price"><span>市内交通 + 包车</span><b>≈ 1200</b></div>
+      <div class="price total"><span>合计（人均约 3400）</span><b>≈ 13600</b></div>
+      <div class="note" style="margin:14px 0 0">不含往返大交通。除夕当天机票、高铁票最贵，越早订越好。</div>
+    </div>
+  </section>
+
+  <!-- 注意 -->
+  <section id="tips">
+    <h2>注意事项</h2>
+    <div class="card">
+      <ul class="tips">
+        <li><b>身份证</b>全程随身，天安门区域随时查验；每天多留 40 分钟安检</li>
+        <li><b>强实名</b>景区不要买转让票，刷证进不去就白花钱</li>
+        <li>初一初二部分餐馆、小店歇业，<b>优先商场店和连锁</b></li>
+        <li>长城 <b>7 点前出发</b>，15:00 前上返程高速</li>
+        <li>纪念堂不能带包、水、相机，广场东侧有寄存处</li>
+        <li>清华约不上时，备选北大（同样需预约）或圆明园</li>
+        <li>室内暖气干燥，<b>多喝水、带润唇膏</b></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 常用导航 -->
+  <section id="nav">
+    <h2>常用导航</h2>
+    <div class="card">
+      <div class="bigmap">
+        <a href="https://uri.amap.com/search?keyword=首都机场T3航站楼&city=北京&callnative=1">首都机场 T3</a>
+        <a href="https://uri.amap.com/search?keyword=大兴国际机场&city=北京&callnative=1">大兴机场</a>
+        <a href="https://uri.amap.com/search?keyword=北京南站&city=北京&callnative=1">北京南站</a>
+        <a href="https://uri.amap.com/search?keyword=北京站&city=北京&callnative=1">北京站</a>
+        <a href="https://uri.amap.com/search?keyword=北京西站&city=北京&callnative=1">北京西站</a>
+        <a href="https://uri.amap.com/search?keyword=前门大街&city=北京&callnative=1">前门商圈</a>
+      </div>
+      <div class="note" style="margin:14px 0 0">
+        点「地图」会唤起高德 App 并定位到该地点；再点底部的「路线」，选<b>公交</b>看地铁方案、选<b>打车</b>看预估价格和叫车。没装高德时会打开网页版，同样能看路线。
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    2 月 5 日 – 2 月 10 日 · 4 位成人<br>
+    开放时间与票价以官方公告为准<br>
+    <button class="relock" id="relock">🔒 锁定</button>
+  </footer>
+</main>
+
+<script>
+(function(){
+  // ── 密码门 ──
+  var PH = '304b5da6';
+  function fnv(s){
+    var h = 2166136261;
+    for(var i = 0; i < s.length; i++){
+      h ^= s.charCodeAt(i);
+      h = Math.imul(h, 16777619) >>> 0;
+    }
+    return ('00000000' + h.toString(16)).slice(-8);
+  }
+  var lockEl = document.getElementById('lock');
+  var pwEl = document.getElementById('pw');
+  var errEl = document.getElementById('err');
+
+  function unlockPage(){
+    document.body.classList.remove('locked');
+    if(lockEl) lockEl.classList.add('hide');
+  }
+  try{
+    if(localStorage.getItem('bj2027:unlock') === PH) unlockPage();
+  }catch(e){}
+
+  function tryUnlock(){
+    var v = (pwEl.value || '').trim();
+    if(fnv('bj2027#' + v) === PH){
+      try{ localStorage.setItem('bj2027:unlock', PH); }catch(e){}
+      errEl.textContent = '';
+      unlockPage();
+    }else{
+      errEl.textContent = '密码不对，再试一次';
+      pwEl.classList.remove('lockshake');
+      void pwEl.offsetWidth;
+      pwEl.classList.add('lockshake');
+      pwEl.select();
+    }
+  }
+  if(pwEl){
+    document.getElementById('go').addEventListener('click', tryUnlock);
+    pwEl.addEventListener('keydown', function(e){ if(e.key === 'Enter') tryUnlock(); });
+    pwEl.focus();
+  }
+  var rl = document.getElementById('relock');
+  if(rl) rl.addEventListener('click', function(){
+    try{ localStorage.removeItem('bj2027:unlock'); }catch(e){}
+    location.reload();
+  });
+
+  var KEY = 'bj2027:';
+  var boxes = document.querySelectorAll('input[type=checkbox][data-key]');
+  boxes.forEach(function(b){
+    try{ if(localStorage.getItem(KEY + b.dataset.key) === '1') b.checked = true; }catch(e){}
+    b.addEventListener('change', function(){
+      try{ localStorage.setItem(KEY + b.dataset.key, b.checked ? '1' : '0'); }catch(e){}
+      count();
+    });
+  });
+  function count(){
+    var n = 0, all = boxes.length;
+    boxes.forEach(function(b){ if(b.checked) n++; });
+    var el = document.getElementById('pcount');
+    if(el) el.textContent = n + ' / ' + all;
+  }
+  count();
+
+  // ── 行程打点：0 未标记 / 1 已完成 / 2 不去了 ──
+  var di = 0;
+  document.querySelectorAll('.day').forEach(function(day){
+    var idx = di++;
+    var rows = Array.prototype.slice.call(day.querySelectorAll('.row'));
+    var cnt = document.createElement('span');
+    cnt.className = 'dcnt';
+    var when = day.querySelector('.dwhen');
+    if(when) when.appendChild(cnt);
+
+    function setState(row, s){
+      row.dataset.state = String(s);
+      row.classList.toggle('done', s === 1);
+      row.classList.toggle('skip', s === 2);
+      var st = row.querySelector('.st');
+      if(st) st.textContent = s === 1 ? '✓' : (s === 2 ? '✕' : '');
+    }
+    function refresh(){
+      var d = 0;
+      rows.forEach(function(r){ if(r.dataset.state === '1') d++; });
+      cnt.textContent = d ? ' · 完成 ' + d + '/' + rows.length : '';
+    }
+
+    rows.forEach(function(row, i){
+      var k = 'bj2027r:' + idx + '-' + i;
+      row.classList.add('tap');
+      var st = document.createElement('span');
+      st.className = 'st';
+      row.appendChild(st);
+
+      var saved = 0;
+      try{ saved = +localStorage.getItem(k) || 0; }catch(e){}
+      setState(row, saved);
+
+      row.addEventListener('click', function(e){
+        if(e.target.closest('a')) return;   // 点地图按钮不触发打点
+        var s = ((+row.dataset.state || 0) + 1) % 3;
+        setState(row, s);
+        try{ localStorage.setItem(k, String(s)); }catch(e){}
+        refresh();
+      });
+    });
+    refresh();
+  });
+
+  // 导航高亮当前区块
+  var links = document.querySelectorAll('.daybar a');
+  var secs = [];
+  links.forEach(function(a){
+    var el = document.querySelector(a.getAttribute('href'));
+    if(el) secs.push({a:a, el:el});
+  });
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(!en.isIntersecting) return;
+        var hit = secs.filter(function(s){ return s.el === en.target; })[0];
+        if(!hit) return;
+        links.forEach(function(l){ l.classList.remove('hot'); });
+        hit.a.classList.add('hot');
+      });
+    }, {rootMargin:'-45% 0px -50% 0px'});
+    secs.forEach(function(s){ io.observe(s.el); });
+  }
+})();
+</script>
+</body>
+</html>
