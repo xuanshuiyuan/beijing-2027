@@ -144,6 +144,9 @@
   .row.done .st{background:var(--ok);border-color:var(--ok);color:#fff}
   .row.skip .st{border-color:var(--muted);color:var(--muted)}
   .dcnt{margin-left:8px;font-size:11.5px;color:var(--muted);font-weight:600;white-space:nowrap}
+  .day.today{border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb, var(--accent) 20%, transparent)}
+  .todaytag{background:var(--accent);color:#fff}
+  .chip.now{background:var(--accent);color:#fff}
   .hint{font-size:12.5px;color:var(--muted);margin:-4px 0 12px;line-height:1.6}
   .hint b{color:var(--accent)}
 
@@ -291,7 +294,7 @@
     <h2>每日行程</h2>
     <p class="hint">轻点任意行程 → 标记<b>已完成</b>（划线变绿）；再轻点 → 标记<b>不去了</b>（变灰）；再轻点恢复原样。<br>红色 <b>⏳</b> 标签 = 该点预计排队/安检时间。</p>
 
-    <div class="card day">
+    <div class="card day" data-date="2027-02-05">
       <div class="day-head">
         <div class="dnum">D1</div>
         <div class="dmeta">
@@ -310,7 +313,7 @@
     </div>
 
     <!-- D2 -->
-    <div class="card day" id="d2">
+    <div class="card day" id="d2" data-date="2027-02-06">
       <div class="day-head">
         <div class="dnum">D2</div>
         <div class="dmeta">
@@ -333,7 +336,7 @@
     </div>
 
     <!-- D3 -->
-    <div class="card day" id="d3">
+    <div class="card day" id="d3" data-date="2027-02-07">
       <div class="day-head">
         <div class="dnum">D3</div>
         <div class="dmeta">
@@ -357,7 +360,7 @@
     </div>
 
     <!-- D4 -->
-    <div class="card day" id="d4">
+    <div class="card day" id="d4" data-date="2027-02-08">
       <div class="day-head">
         <div class="dnum">D4</div>
         <div class="dmeta">
@@ -378,7 +381,7 @@
     </div>
 
     <!-- D5 -->
-    <div class="card day" id="d5">
+    <div class="card day" id="d5" data-date="2027-02-09">
       <div class="day-head">
         <div class="dnum">D5</div>
         <div class="dmeta">
@@ -398,7 +401,7 @@
     </div>
 
     <!-- D6 -->
-    <div class="card day" id="d6">
+    <div class="card day" id="d6" data-date="2027-02-10">
       <div class="day-head">
         <div class="dnum">D6</div>
         <div class="dmeta">
@@ -532,9 +535,60 @@
   var pwEl = document.getElementById('pw');
   var errEl = document.getElementById('err');
 
+  // ── 按日期定位到今天 ──
+  function todayISO(){
+    try{
+      return new Intl.DateTimeFormat('en-CA', {timeZone:'Asia/Shanghai', year:'numeric', month:'2-digit', day:'2-digit'}).format(new Date());
+    }catch(e){
+      var d = new Date();
+      return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+    }
+  }
+  function dayGap(a, b){
+    return Math.round((Date.parse(b + 'T00:00:00Z') - Date.parse(a + 'T00:00:00Z')) / 86400000);
+  }
+  function jumpToday(){
+    var t = todayISO();
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.day[data-date]'));
+    if(!cards.length) return;
+    var hit = null;
+    cards.forEach(function(c){ if(c.dataset.date === t) hit = c; });
+    var chips = document.querySelector('.chips');
+    var chip = document.createElement('span');
+    chip.className = 'chip now';
+
+    if(hit){
+      var n = cards.indexOf(hit) + 1;
+      chip.textContent = '今天 · D' + n;
+      if(chips) chips.appendChild(chip);
+      var ttl = hit.querySelector('.dtitle');
+      if(ttl){
+        var tg = document.createElement('span');
+        tg.className = 'tag todaytag';
+        tg.textContent = '今天';
+        ttl.appendChild(tg);
+      }
+      hit.classList.add('today');
+      setTimeout(function(){
+        var y = hit.getBoundingClientRect().top + window.pageYOffset - 62;
+        window.scrollTo({top: y, behavior:'smooth'});
+      }, 140);
+    }else{
+      var first = cards[0].dataset.date;
+      var last = cards[cards.length-1].dataset.date;
+      var before = dayGap(t, first);
+      var after = dayGap(last, t);
+      if(before > 0) chip.textContent = '距出发 ' + before + ' 天';
+      else if(after > 0) chip.textContent = '行程已结束 ' + after + ' 天';
+      else return;
+      if(chips) chips.appendChild(chip);
+    }
+  }
+
   function unlockPage(){
     document.body.classList.remove('locked');
     if(lockEl) lockEl.classList.add('hide');
+    jumpToday();
   }
   try{
     if(localStorage.getItem('bj2027:unlock') === PH) unlockPage();
