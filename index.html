@@ -221,6 +221,22 @@
   .bk .n{flex:1}
   .bk .n small{display:block;color:var(--muted);font-size:12.5px;margin-top:1px}
 
+  .gatedetail{
+    margin:8px 0 10px;border-radius:10px;background:var(--accent-soft);
+    border:1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+  }
+  .gatedetail summary{
+    list-style:none;cursor:pointer;padding:9px 12px;
+    font-size:13px;font-weight:700;color:var(--accent);
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .gatedetail summary::-webkit-details-marker{display:none}
+  .gatedetail summary::after{content:"＋";font-weight:800;font-size:14px}
+  .gatedetail[open] summary::after{content:"－"}
+  .gd{padding:0 12px 10px;font-size:13.5px;line-height:1.7}
+  .gd p{margin:3px 0}
+  .gd .warn{color:var(--accent);font-weight:700;margin-top:6px}
+
   ul.tips{margin:0;padding-left:20px}
   ul.tips li{margin:8px 0;font-size:14.6px}
   ul.tips li b{font-weight:700}
@@ -454,6 +470,15 @@
     <div class="card">
       <div class="bhead">2/5 周五 · 除夕</div>
       <div class="bk"><div class="w">1/29 周五<br>12:00</div><div class="n">天安门广场<small>除夕下午看降旗用 · 广场按日期预约，去几次约几次</small></div></div>
+      <details class="gatedetail">
+        <summary>广场安检口怎么选</summary>
+        <div class="gd">
+          <p><b>03 号</b>：正面看升旗、拍天安门城楼 → 首选</p>
+          <p><b>01 / 02 号</b>：想看仪仗队行进</p>
+          <p><b>03 没名额</b>：改选 01</p>
+          <p class="warn">约了哪个口，就必须从哪个口进，不能换。</p>
+        </div>
+      </details>
 
       <div class="bhead hot">2/6 周六 · 初一</div>
       <div class="bk"><div class="w">1/30 周六<br>12:00</div><div class="n">天安门广场<small>进广场、看纪念堂都要先约广场，纪念堂另约</small></div></div>
@@ -480,14 +505,7 @@
       </div>
     </div>
 
-    <h2 style="margin-top:22px">广场安检口怎么选</h2>
-    <div class="card">
-      <div class="kv"><b>03 号</b><span>正面看升旗、拍天安门城楼 → <b>首选</b></span></div>
-      <div class="kv"><b>01 / 02 号</b><span>想看仪仗队行进</span></div>
-      <div class="kv"><b>03 没名额</b><span>改选 01</span></div>
-      <div class="note"><b>约了哪个口，就必须从哪个口进，不能换。</b>提交前看清楚再点，走错口要重新排队甚至进不去。</div>
-    </div>
-  </section>
+      </section>
 
   <!-- 排队 -->
   <section id="queue">
