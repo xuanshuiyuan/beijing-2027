@@ -209,6 +209,18 @@
   .kv span{flex:1;color:var(--muted)}
   .kv span em{color:var(--accent);font-style:normal;font-weight:600}
 
+  .bhead{
+    margin:16px 0 2px;padding-top:12px;border-top:1px dashed var(--line);
+    font-size:12.5px;font-weight:800;letter-spacing:.05em;color:var(--muted);
+  }
+  .bhead:first-child{margin-top:0;padding-top:0;border-top:0}
+  .bhead.hot{color:var(--accent)}
+  .bk{display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+  .bk:last-child{border-bottom:0}
+  .bk .w{flex:0 0 92px;font-weight:700;color:var(--accent);font-size:13px;line-height:1.45;font-variant-numeric:tabular-nums}
+  .bk .n{flex:1}
+  .bk .n small{display:block;color:var(--muted);font-size:12.5px;margin-top:1px}
+
   ul.tips{margin:0;padding-left:20px}
   ul.tips li{margin:8px 0;font-size:14.6px}
   ul.tips li b{font-weight:700}
@@ -437,19 +449,35 @@
       <div class="note" style="margin:14px 0 0"><b>强实名提醒：</b>故宫、国博、纪念堂、城楼、大会堂、清华都需本人身份证刷证入场。代订务必用 4 人真实身份信息，别买「转让票」。</div>
     </div>
 
-    <h2 style="margin-top:22px">抢票日历 · 按顺序设闹钟</h2>
+    <h2 style="margin-top:22px">预约清单 · 按游览日</h2>
     <div class="card">
-      <div class="kv"><b>1/29 12:00</b><span>天安门广场 → 2/5 除夕</span></div>
-      <div class="kv"><b>1/30 12:00</b><span>天安门广场 → 2/6 初一</span></div>
-      <div class="kv"><b>1/31 12:30</b><span>毛主席纪念堂 → 2/6 初一</span></div>
-      <div class="kv"><b>1/31 20:00</b><span>故宫博物院 → 2/7 初二</span></div>
-      <div class="kv"><b>2/1 12:00</b><span>天安门广场 → 2/7（只在去人民大会堂时需要）</span></div>
-      <div class="kv"><b>2/2 17:00</b><span>国家博物馆 → 2/9 初四</span></div>
-      <div class="kv"><b>2/4 17:00</b><span>天安门城楼 → 2/7 初二 <em>（只放第三日，错过就没）</em></span></div>
-      <div class="kv"><b>2/4 17:00</b><span>人民大会堂 → 2/7 初二（可选）</span></div>
-      <div class="kv"><b>2/3 前后</b><span>清华大学 → 2/10 初五（按 7 天前算，名额少，越早越好）</span></div>
-      <div class="kv"><b>2/1 前后</b><span>慕田峪 / 八达岭 → 2/8 初三（放票时间待确认）</span></div>
-      <div class="note" style="margin:14px 0 0"><b>最容易翻车的是城楼：</b>它不提前 7 天放，只在每天 17:00 放出第 3 天的票，也就是 <b>2/4 17:00 抢 2/7</b>。定好闹钟，17:00 一到就点。</div>
+      <div class="bhead">2/5 周五 · 除夕</div>
+      <div class="bk"><div class="w">1/29 周五<br>12:00</div><div class="n">天安门广场<small>微信小程序</small></div></div>
+
+      <div class="bhead hot">2/6 周六 · 初一</div>
+      <div class="bk"><div class="w">1/30 周六<br>12:00</div><div class="n">天安门广场<small>微信小程序</small></div></div>
+      <div class="bk"><div class="w">1/31 周日<br>12:30</div><div class="n">毛主席纪念堂<small>微信小程序 · 提前 6 天</small></div></div>
+
+      <div class="bhead">2/7 周日 · 初二</div>
+      <div class="bk"><div class="w">1/31 周日<br>20:00</div><div class="n">故宫博物院<small>微信小程序</small></div></div>
+      <div class="bk"><div class="w">2/1 周一<br>12:00</div><div class="n">天安门广场<small>只在去人民大会堂时需要</small></div></div>
+      <div class="bk"><div class="w">2/4 周四<br>17:00</div><div class="n">天安门城楼<small>网页 · 只放第 3 日，错过就没</small></div></div>
+      <div class="bk"><div class="w">2/4 周四<br>17:00</div><div class="n">人民大会堂（可选）<small>微信小程序 · 只放第 3 日</small></div></div>
+
+      <div class="bhead">2/8 周一 · 初三</div>
+      <div class="bk"><div class="w">2/1 前后</div><div class="n">慕田峪 / 八达岭长城<small>公众号 · 放票时间待确认</small></div></div>
+
+      <div class="bhead">2/9 周二 · 初四</div>
+      <div class="bk"><div class="w">2/2 周二<br>17:00</div><div class="n">国家博物馆<small>微信小程序</small></div></div>
+
+      <div class="bhead">2/10 周三 · 初五</div>
+      <div class="bk"><div class="w">2/3 周三</div><div class="n">清华大学<small>微信小程序 · 名额极少，越早越好</small></div></div>
+
+      <div class="note" style="margin:14px 0 0">
+        <b>两个容易出事的地方：</b><br>
+        ① <b>1/31 那天有两枪</b>——中午 12:30 抢纪念堂、晚上 20:00 抢故宫，别只定一个闹钟。<br>
+        ② <b>城楼不提前 7 天放</b>，只在每天 17:00 放出第 3 天的票，也就是 2/4 17:00 那一枪，错过了就没有了。
+      </div>
     </div>
   </section>
 
