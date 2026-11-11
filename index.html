@@ -563,6 +563,20 @@
         <li>室内暖气干燥，<b>多喝水、带润唇膏</b></li>
       </ul>
     </div>
+
+    <h2 style="margin-top:22px">城楼安检清单</h2>
+    <div class="card" id="gtlist">
+      <div class="progress"><span>进安检前逐项确认（官方规定）</span><span id="gtcount">0 / 8</span></div>
+      <label class="check"><input type="checkbox" data-key="g1"><span>背包 / 手提包 —— 存到城楼北侧免费存包处</span></label>
+      <label class="check"><input type="checkbox" data-key="g2"><span>水、饮料等液体 —— 喝掉或不带</span></label>
+      <label class="check"><input type="checkbox" data-key="g3"><span>食品、零食</span></label>
+      <label class="check"><input type="checkbox" data-key="g4"><span>充电宝</span></label>
+      <label class="check"><input type="checkbox" data-key="g5"><span>云台、自拍杆</span></label>
+      <label class="check"><input type="checkbox" data-key="g6"><span>打火机、火柴等火种</span></label>
+      <label class="check"><input type="checkbox" data-key="g7"><span>刀具、工具类</span></label>
+      <label class="check"><input type="checkbox" data-key="g8"><span>身份证原件带在身上 —— 现场要过人脸比对</span></label>
+      <div class="note" style="margin:12px 0 0">打勾 = 已处理（寄存或不带）。过了端门不能回头，存包的凭证收好。</div>
+    </div>
   </section>
 
   <!-- 常用导航 -->
@@ -692,20 +706,30 @@
 
   var KEY = 'bj2027:';
   var boxes = document.querySelectorAll('input[type=checkbox][data-key]');
+  var prepBoxes = document.querySelectorAll('#prep input[type=checkbox][data-key]');
+  var gtBoxes = document.querySelectorAll('#gtlist input[type=checkbox][data-key]');
   boxes.forEach(function(b){
     try{ if(localStorage.getItem(KEY + b.dataset.key) === '1') b.checked = true; }catch(e){}
     b.addEventListener('change', function(){
       try{ localStorage.setItem(KEY + b.dataset.key, b.checked ? '1' : '0'); }catch(e){}
       count();
+      gtcount();
     });
   });
   function count(){
-    var n = 0, all = boxes.length;
-    boxes.forEach(function(b){ if(b.checked) n++; });
+    var n = 0;
+    prepBoxes.forEach(function(b){ if(b.checked) n++; });
     var el = document.getElementById('pcount');
-    if(el) el.textContent = n + ' / ' + all;
+    if(el) el.textContent = n + ' / ' + prepBoxes.length;
+  }
+  function gtcount(){
+    var n = 0;
+    gtBoxes.forEach(function(b){ if(b.checked) n++; });
+    var el = document.getElementById('gtcount');
+    if(el) el.textContent = n + ' / ' + gtBoxes.length;
   }
   count();
+  gtcount();
 
   // ── 行程打点：0 未标记 / 1 已完成 / 2 不去了 ──
   var di = 0;
